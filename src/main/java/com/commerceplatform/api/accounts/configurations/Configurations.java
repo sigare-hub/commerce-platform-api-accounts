@@ -1,5 +1,6 @@
 package com.commerceplatform.api.accounts.configurations;
 
+import com.commerceplatform.api.accounts.enums.RoleEnum;
 import com.commerceplatform.api.accounts.repositories.jpa.UserRepository;
 import com.commerceplatform.api.accounts.security.CustomUserDetailsService;
 import com.commerceplatform.api.accounts.security.JwtService;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,8 +21,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
+@EnableGlobalAuthentication
 @Configuration
 public class Configurations {
+    private static final String ROLE_ADMIN = RoleEnum.ADMIN.getName();
+
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
@@ -59,11 +64,13 @@ public class Configurations {
         http.httpBasic().and().authorizeHttpRequests()
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
             .requestMatchers("/recovery-password/*").permitAll()
-            .requestMatchers(HttpMethod.POST, "/role").permitAll()
-            .requestMatchers(HttpMethod.GET, "/role").permitAll()
             .requestMatchers(HttpMethod.POST, "/user").permitAll()
-            .requestMatchers(HttpMethod.GET, "/user").permitAll()
+            .requestMatchers(HttpMethod.POST, "/role").hasRole(ROLE_ADMIN)
+            .requestMatchers(HttpMethod.GET, "/role").hasRole(ROLE_ADMIN)
+            .requestMatchers(HttpMethod.GET, "/user").hasRole(ROLE_ADMIN)
             .requestMatchers(HttpMethod.GET, "/user-type").permitAll()
+            // permitir por enquanto
+            .requestMatchers(HttpMethod.PATCH, "/users-roles").permitAll()
             .anyRequest().authenticated().and()
             .csrf().disable()
             .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)

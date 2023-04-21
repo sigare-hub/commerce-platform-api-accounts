@@ -110,7 +110,7 @@ public class UserModel implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (RoleModel role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toString()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         }
         return authorities;
     }

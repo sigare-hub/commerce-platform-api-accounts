@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recovery-password")
-public class RecoveryPassword {
+public class RecoveryPasswordController {
     private final RecoveryPasswordService recoveryPasswordService;
 
-    public RecoveryPassword(RecoveryPasswordService recoveryPasswordService) {
+    public RecoveryPasswordController(RecoveryPasswordService recoveryPasswordService) {
         this.recoveryPasswordService = recoveryPasswordService;
     }
 
