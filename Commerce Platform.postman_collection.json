@@ -12,7 +12,7 @@
 					"name": "Authentication",
 					"item": [
 						{
-							"name": "Login",
+							"name": "Login de usuário comum",
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -21,7 +21,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"oi@gmail.com\",\n    \"password\": \"23\"\n}",
+									"raw": "{\n    \"email\": \"user04@gmail.com\",\n    \"password\": \"develop\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -45,12 +45,24 @@
 							"response": []
 						},
 						{
-							"name": "Teste",
+							"name": "Login de usuário administrador",
 							"request": {
-								"method": "GET",
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user03@gmail.com\",\n    \"password\": \"develop\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:4000/api/user",
+									"raw": "http://localhost:4000/api/auth/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -58,7 +70,8 @@
 									"port": "4000",
 									"path": [
 										"api",
-										"user"
+										"auth",
+										"login"
 									]
 								}
 							},
@@ -76,7 +89,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"user02@gmail.com\",\n    \"username\": \"user02\",\n    \"password\": \"13123123123\"\n}",
+									"raw": "{\n    \"email\": \"user04@gmail.com\",\n    \"username\": \"user04\",\n    \"password\": \"develop\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -98,6 +111,16 @@
 						{
 							"name": "Find all users",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwiaXNzIjoiQ29tbWVyY2UgUGxhdGZvcm0gQWNjb3VudHMiLCJpZCI6NCwiZXhwIjoxNjgyMTEzNTMzfQ.3-SYECNdyoLZ0JVjbMFzB3hGJzcYt8AB7MFqmMSUD7g",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -242,6 +265,38 @@
 									],
 									"path": [
 										"role"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UsersRoles",
+					"item": [
+						{
+							"name": "Save role in user",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/users-roles?user_id=4&role_id=2",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"users-roles"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "4"
+										},
+										{
+											"key": "role_id",
+											"value": "2"
+										}
 									]
 								}
 							},
