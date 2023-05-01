@@ -5,10 +5,15 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.commerceplatform.api.accounts.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class JwtService {
@@ -18,15 +23,21 @@ public class JwtService {
     private static final String ISSUER = "Commerce Platform Accounts";
 
     public String generateToken(Authentication authentication, Long userId) throws BadRequestException {
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        List<String> roles = new ArrayList<>();
+        for (GrantedAuthority authority : authorities) {
+            roles.add(authority.getAuthority());
+        }
+
         return JWT.create()
             .withIssuer(ISSUER)
             .withSubject(authentication.getName())
-            .withClaim("id", userId)
+            .withClaim("roles", roles)
             .withExpiresAt(
                 LocalDateTime.now()
                     .plusMinutes(10)
                     .toInstant(ZoneOffset.of("-03:00")
-                    )
+                )
             )
             .sign(Algorithm.HMAC256(secret));
     }

@@ -1,6 +1,7 @@
 package com.commerceplatform.api.accounts.security.filters;
 
 import com.commerceplatform.api.accounts.exceptions.BadRequestException;
+import com.commerceplatform.api.accounts.exceptions.NotFoundException;
 import com.commerceplatform.api.accounts.repositories.jpa.UserRepository;
 import com.commerceplatform.api.accounts.security.JwtService;
 import jakarta.servlet.FilterChain;
@@ -40,14 +41,15 @@ public class JwtFilter extends OncePerRequestFilter {
     private void authenticateByToken(String token) {
         try {
             var subject = this.jwtService.getSubject(token);
-            var user = userRepository.findByEmail(subject);
+            var user = userRepository.findByEmail(subject)
+                    .orElseThrow(() -> new NotFoundException("Not found user with token " ));
 
             SecurityContextHolder
                 .getContext()
                 .setAuthentication(new UsernamePasswordAuthenticationToken(
                         user,
                         null,
-                        user.get().getAuthorities()
+                        user.getAuthorities()
                     )
                 );
         } catch(Exception e) {
