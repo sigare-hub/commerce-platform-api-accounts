@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class JwtService {
 
     private static final String ISSUER = "Commerce Platform Accounts";
 
-    public String generateToken(Authentication authentication, Long userId) throws BadRequestException {
+    public String generateToken(Authentication authentication) throws BadRequestException {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String> roles = new ArrayList<>();
         for (GrantedAuthority authority : authorities) {
@@ -57,5 +56,12 @@ public class JwtService {
             .build()
             .verify(token)
             .getSubject();
+    }
+
+    public void validateJwt(String token) throws BadRequestException {
+        JWT.require(Algorithm.HMAC256(secret))
+            .withIssuer(ISSUER)
+            .build()
+            .verify(token);
     }
 }

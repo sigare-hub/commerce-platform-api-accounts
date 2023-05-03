@@ -21,13 +21,11 @@ public class AuthenticationService extends Validators implements AuthenticationS
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final UserService userService;
 
-    public AuthenticationService(AuthenticationManager authenticationManager, JwtService jwtService, UserService userService) {
+    public AuthenticationService(AuthenticationManager authenticationManager, JwtService jwtService) {
         super();
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
-        this.userService = userService;
     }
 
     public LoginOutput login(LoginInput input) {
@@ -50,8 +48,7 @@ public class AuthenticationService extends Validators implements AuthenticationS
             )
         );
 
-        var user = userService.findByEmail(input.email());
-        var token = jwtService.generateToken(auth, user.getId());
+        var token = jwtService.generateToken(auth);
         var expiresAt = jwtService.getExpirationDate(token);
 
         return LoginOutput.builder()

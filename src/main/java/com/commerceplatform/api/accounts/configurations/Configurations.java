@@ -63,15 +63,19 @@ public class Configurations {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeHttpRequests()
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-            .requestMatchers("/recovery-password/*").permitAll()
+            .requestMatchers(HttpMethod.GET, "/auth/validate-token").permitAll()
+
             .requestMatchers(HttpMethod.POST, "/user").permitAll()
+            .requestMatchers(HttpMethod.GET, "/user").hasRole(ROLE_ADMIN)
+
+            .requestMatchers("/recovery-password/*").permitAll()
+
             .requestMatchers(HttpMethod.POST, "/role").hasRole(ROLE_ADMIN)
             .requestMatchers(HttpMethod.GET, "/role").permitAll()
-            .requestMatchers(HttpMethod.GET, "/user").hasRole(ROLE_ADMIN)
-            .requestMatchers(HttpMethod.GET, "/user-type").permitAll()
+
             .requestMatchers(HttpMethod.GET, "/test").permitAll()
-            // permitir por enquanto
             .requestMatchers(HttpMethod.PATCH, "/users-roles").permitAll()
+
             .anyRequest().authenticated().and()
             .csrf().disable()
             .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
