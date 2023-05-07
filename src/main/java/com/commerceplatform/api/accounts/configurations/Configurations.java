@@ -71,7 +71,7 @@ public class Configurations {
             .requestMatchers("/recovery-password/*").permitAll()
 
             .requestMatchers(HttpMethod.POST, "/role").hasRole(ROLE_ADMIN)
-            .requestMatchers(HttpMethod.GET, "/role").permitAll()
+            .requestMatchers(HttpMethod.GET, "/role").hasRole(ROLE_ADMIN)
 
             .requestMatchers(HttpMethod.GET, "/test").permitAll()
             .requestMatchers(HttpMethod.PATCH, "/users-roles").permitAll()
