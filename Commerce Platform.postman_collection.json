@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Accounts",
+			"name": "API Accounts",
 			"item": [
 				{
 					"name": "Authentication",
@@ -130,6 +130,24 @@
 									],
 									"path": [
 										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by ud",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/user/2",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"user",
+										"2"
 									]
 								}
 							},
@@ -303,6 +321,619 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "API Products",
+			"item": [
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Authenticated",
+							"item": [
+								{
+									"name": "Create product (is admin)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4Mzg1OTI0M30.Wft0SaP5M4v8jAMCYT5rhkWp4Qhx9NrESAqdGd34Lwc",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Produto 002\",\n    \"description\": \"Descricao do Produto 001\"\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{_}}/product",
+											"host": [
+												"{{_}}"
+											],
+											"path": [
+												"product"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete product by id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzY5MTk5MX0.I86CBFbWBJPdqQZvmHi0jGKTWzf6fh_PoQ8BJ_3GOw8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{_}}/product/1",
+											"host": [
+												"{{_}}"
+											],
+											"path": [
+												"product",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzY5MjYyMX0.VpCoCjHQTh8dTQX_kyckwmjS2W-OEAVQxbdbHnpDGAI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": 4,\n    \"name\": \"Produto Numero 4\",\n    \"description\": \"Descricao do Produto 004\",\n    \"productType\": null,\n    \"salePrice\": null,\n    \"purchasePrice\": null,\n    \"promotionalPrice\": null\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{_}}/product",
+											"host": [
+												"{{_}}"
+											],
+											"path": [
+												"product"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Find product by id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzY5MTk5MX0.I86CBFbWBJPdqQZvmHi0jGKTWzf6fh_PoQ8BJ_3GOw8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{_}}/product/1",
+											"host": [
+												"{{_}}"
+											],
+											"path": [
+												"product",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Find all products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/product",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find all products by ids",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/product/by-ids?ids=1,2,3",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"product",
+										"by-ids"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "1,2,3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Create category (is admin)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4Mzg1OTUwMX0.NK3jlaOBpA2Ndb3pwmN5Kpr88Jymzio-2_lUYHKQ5So",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"ventiladores\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{_}}/category",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find all categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/category",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find category by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4Mzg1OTUwMX0.NK3jlaOBpA2Ndb3pwmN5Kpr88Jymzio-2_lUYHKQ5So",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/category/3",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"category",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete category by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzY5MjYyMX0.VpCoCjHQTh8dTQX_kyckwmjS2W-OEAVQxbdbHnpDGAI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/category/1",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzY5Mjc3OH0.KGkGdeWOBKSEvUwRN6e6ln1MHPudBA0_NEg9UTnz69c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 3,\n    \"name\": \"Cosmeticos\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{_}}/category",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ProductCategory",
+					"item": [
+						{
+							"name": "Assign categories to product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4Mzg2MzMxNX0.JBA01xvrPql1PkESNS4FgPIvxR7OwTpmGDwk1YjIy4I",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"categoriesId\": [2, 3]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{_}}/product-category/assign?productId=6",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"product-category",
+										"assign"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find all products with categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/product-category",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"product-category"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "User Copy",
+					"item": [
+						{
+							"name": "Create user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzQzOTI1OH0.CafDCZUT-hWOSbTJpMEyQieJK_w-oJBLvpfVERJqGmY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user04@gmail.com\",\n    \"username\": \"user04\",\n    \"password\": \"develop\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find all users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwiaXNzIjoiQ29tbWVyY2UgUGxhdGZvcm0gQWNjb3VudHMiLCJpZCI6NCwiZXhwIjoxNjgyMTEzNTMzfQ.3-SYECNdyoLZ0JVjbMFzB3hGJzcYt8AB7MFqmMSUD7g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{_}}/user",
+									"host": [
+										"{{_}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Request gateway",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMDNAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJDb21tZXJjZSBQbGF0Zm9ybSBBY2NvdW50cyIsImV4cCI6MTY4MzQzOTI1OH0.CafDCZUT-hWOSbTJpMEyQieJK_w-oJBLvpfVERJqGmY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Produto Criado pelo Gateway\",\n    \"description\": \"Descricao do Produto do Gateway\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Orders",
+			"item": [
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": 2,\n    \"order_items\": [\n        {\n            \"product_id\": 3,\n            \"quantity\": 3,\n            \"price\": 3\n        },\n        {\n            \"product_id\": 4,\n            \"quantity\": 4,\n            \"price\": 4\n        },\n        {\n            \"product_id\": 5,\n            \"quantity\": 5,\n            \"price\": 5\n        }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4002/api/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInde order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/order/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"order",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInde order by ID Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/order-details/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"order-details",
+								"6"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
