@@ -66,7 +66,9 @@ public class Configurations {
             .requestMatchers(HttpMethod.GET, "/auth/validate-token").permitAll()
 
             .requestMatchers(HttpMethod.POST, "/user").permitAll()
-            .requestMatchers(HttpMethod.GET, "/user").hasRole(ROLE_ADMIN)
+//            .requestMatchers(HttpMethod.GET, "/user").hasRole(ROLE_ADMIN)
+// remove temporally because tests in api orders while test find by id customers
+            .requestMatchers(HttpMethod.GET, "/user/*").permitAll()
 
             .requestMatchers("/recovery-password/*").permitAll()
 

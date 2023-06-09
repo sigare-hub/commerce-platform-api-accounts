@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -77,6 +76,20 @@ public class UserService extends Validators implements UserServiceRules {
     @Cacheable(value = "user")
     public List<UserModel> findAll() {
         return this.userRepository.findAll();
+    }
+
+    public UserDto findById(Long id) {
+        var result = userRepository.findById(id)
+            .orElseThrow(() -> new NotFoundException("User not found"));
+
+        return UserDto.builder()
+            .id(result.getId())
+            .email(result.getEmail())
+            .username(result.getUsername())
+            .createdAt(result.getCreatedAt())
+            .updatedAt(result.getUpdatedAt())
+            .roles(result.getRoles())
+            .build();
     }
 
     public UserModel findByEmail(String email) {
